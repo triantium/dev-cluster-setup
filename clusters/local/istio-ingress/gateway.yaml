@@ -1,7 +1,35 @@
-apiVersion: networking.istio.io/v1beta1
+apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: gateway
+  namespace: istio-ingress
 spec:
   selector:
-    svccontroller.k3s.cattle.io/svcname: istio-gateway
+    app: my-gateway-controller
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "valkyrie.fritz.box"
+        - "*"
+      tls:
+        httpsRedirect: false # sends 301 redirect for http requests
+    - port:
+        number: 443
+        name: https-443
+        protocol: HTTPS
+      hosts:
+        - "valkyrie.fritz.box"
+        - "*"
+      tls:
+        mode: SIMPLE # enables HTTPS on this port
+        serverCertificate: /etc/certs/servercert.pem
+        privateKey: /etc/certs/privatekey.pem
+    - port:
+        number: 9080
+        name: http-wildcard
+        protocol: HTTP
+      hosts:
+        - "*"
