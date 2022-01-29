@@ -6,3 +6,6 @@ ports:
   - port: 8080:80 # same as `--port '8080:80@loadbalancer'`
     nodeFilters:
       - loadbalancer
+  - port: 9080:9080 # same as `--port '8080:80@loadbalancer'`
+    nodeFilters:
+      - loadbalancer
