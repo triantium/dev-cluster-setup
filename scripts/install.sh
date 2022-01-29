@@ -11,3 +11,5 @@ flux version
 k3d cluster create local
 
 #flux bootstrap github  --owner=triantium --repository=cloudland2022 --branch=main --path=./clusters/local --personal
+
+kubectl delete -n kube-system service traefik
