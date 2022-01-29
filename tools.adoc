@@ -1,0 +1,11 @@
+= Toolliste
+
+
+- https://k3d.io/v5.2.2/
+- https://rancherdesktop.io/[Rancher Desktop]
+- Prometheus Operator
+- Istio
+- Tekton 
+- Flux
+
+=
