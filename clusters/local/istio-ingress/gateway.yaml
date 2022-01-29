@@ -1,0 +1,7 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: gateway
+spec:
+  selector:
+    svccontroller.k3s.cattle.io/svcname: istio-gateway

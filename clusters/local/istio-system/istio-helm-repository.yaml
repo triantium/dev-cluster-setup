@@ -4,5 +4,5 @@ metadata:
   name: istio
   namespace: istio-system
 spec:
-  url: https://istio-release.storage.googleapis.com/charts/istio/base
+  url: https://istio-release.storage.googleapis.com/charts/
   interval: 60m
