@@ -10,7 +10,4 @@ flux version
 
 k3d cluster create local
 
-flux bootstrap git \
-  --url=ssh://git@<host>/<org>/<repository> \
-  --branch=<my-branch> \
-  --path=clusters/my-cluster
+#flux bootstrap github  --owner=triantium --repository=cloudland2022 --branch=main --path=./clusters/local --personal
