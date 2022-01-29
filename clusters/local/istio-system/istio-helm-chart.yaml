@@ -1,0 +1,13 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmChart
+metadata:
+  name: istio
+  namespace: istio-system
+spec:
+  chart: istio-base
+  version: 1.12.2
+  #repository: https://istio-release.storage.googleapis.com/charts/istio/base
+  sourceRef:
+    name: istio
+    kind: HelmRepository
+  interval: 60m
