@@ -6,6 +6,15 @@ ports:
   - port: 8080:80 # same as `--port '8080:80@loadbalancer'`
     nodeFilters:
       - loadbalancer
+  - port: 8443:443 # same as `--port '8080:80@loadbalancer'`
+    nodeFilters:
+      - loadbalancer
   - port: 9080:9080 # same as `--port '8080:80@loadbalancer'`
     nodeFilters:
       - loadbalancer
+options:
+  k3s: # options passed on to K3s itself
+    extraArgs: # additional arguments passed to the `k3s server|agent` command; same as `--k3s-arg`
+      - arg: --no-deploy=traefik
+        nodeFilters:
+          - server:*
