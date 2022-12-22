@@ -8,6 +8,7 @@ metadata:
 spec:
   ports:
     - port: 9308
+      name: metrics
   selector:
     app: kafka-exporter
 ---
@@ -38,3 +39,14 @@ spec:
           name: kafka-kafka-exporter
           ports:
             - containerPort: 9308
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: kafka-exporter
+spec:
+  selector:
+    matchLabels:
+      app: kafka-exporter
+  endpoints:
+    - port: metrics

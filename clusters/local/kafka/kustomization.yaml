@@ -1,6 +1,16 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: kafka
 resources:
   - zookeeper.yaml
   - kafka-broker.yaml
   - kafka-exporter.yaml
+  - akhq.yaml
+
+configMapGenerator:
+  - name: akhq-config
+    files:
+      - akhq-config.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true

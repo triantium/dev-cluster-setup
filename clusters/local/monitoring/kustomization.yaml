@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: monitoring
+resources:
+  - roles.yaml
+  - https://github.com/prometheus-operator/kube-prometheus/raw/main/manifests/setup/0alertmanagerConfigCustomResourceDefinition.yaml
+  - https://github.com/prometheus-operator/kube-prometheus/raw/main/manifests/setup/0alertmanagerCustomResourceDefinition.yaml
+  - https://github.com/prometheus-operator/kube-prometheus/raw/main/manifests/setup/0probeCustomResourceDefinition.yaml
+  - https://github.com/prometheus-operator/kube-prometheus/raw/main/manifests/setup/0prometheusCustomResourceDefinition.yaml
+  - https://github.com/prometheus-operator/kube-prometheus/raw/main/manifests/setup/0prometheusruleCustomResourceDefinition.yaml
+  - https://github.com/prometheus-operator/kube-prometheus/raw/main/manifests/setup/0servicemonitorCustomResourceDefinition.yaml
+  - https://github.com/prometheus-operator/kube-prometheus/raw/main/manifests/setup/0thanosrulerCustomResourceDefinition.yaml
+  #- https://github.com/prometheus-operator/kube-prometheus/raw/main/manifests/setup/namespace.yaml

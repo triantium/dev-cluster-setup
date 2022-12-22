@@ -1,0 +1,10 @@
+akhq:
+  connections:
+    local:
+      properties:
+        bootstrap.servers: "kafka-service.kafka:9092"
+      schema-registry:
+        url: "http://schema-registry:8085"
+      connect:
+        - name: "connect"
+          url: "http://connect:8083"

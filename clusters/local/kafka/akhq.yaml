@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: akhq
+  name: akhq
+  namespace: kafka
+spec:
+  ports:
+    - port: 8080
+  selector:
+    app: akhq
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: akhq
+  name: akhq
+  namespace: kafka
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: akhq
+  template:
+    metadata:
+      labels:
+        app: akhq
+    spec:
+      hostname: akhq
+      containers:
+        - image: tchiotludo/akhq
+#          args:
+#            - 'cat'
+#            - '/app/application.yml'
+          imagePullPolicy: IfNotPresent
+          name: kafka-akhq
+          ports:
+            - containerPort: 9308
+          volumeMounts:
+            - mountPath: /app/application.yml
+              name: akhq-config
+              subPath: akhq-config.yaml
+      volumes:
+        - name: akhq-config
+          configMap:
+            name: akhq-config
+
