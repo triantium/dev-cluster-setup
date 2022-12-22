@@ -6,7 +6,7 @@ metadata:
 spec:
   chart: istio-base
   version: 1.16.1
-  #repository: https://istio-release.storage.googleapis.com/charts/istio/base
+  repository: https://istio-release.storage.googleapis.com/charts/istio/base
   sourceRef:
     name: istio
     kind: HelmRepository

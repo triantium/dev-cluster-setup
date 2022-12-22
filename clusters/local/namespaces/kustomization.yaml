@@ -5,3 +5,4 @@ resources:
 - istio-ingress.yaml
 - istio-system.yaml
 - monitoring.yaml
+- kafka.yaml
