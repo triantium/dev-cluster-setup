@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - zookeeper.yaml
   - kafka-broker.yaml
+  - kafka-exporter.yaml

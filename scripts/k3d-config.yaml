@@ -1,20 +1,44 @@
-apiVersion: k3d.io/v1alpha3
+
+apiVersion: k3d.io/v1alpha4
 kind: Simple
-name: local
+kubeAPI: { }
+metadata:
+  name: local
 agents: 2
-ports:
-  - port: 8080:80 # same as `--port '8080:80@loadbalancer'`
-    nodeFilters:
-      - loadbalancer
-  - port: 8443:443 # same as `--port '8080:80@loadbalancer'`
-    nodeFilters:
-      - loadbalancer
-  - port: 9080:9080 # same as `--port '8080:80@loadbalancer'`
-    nodeFilters:
-      - loadbalancer
 options:
-  k3s: # options passed on to K3s itself
-    extraArgs: # additional arguments passed to the `k3s server|agent` command; same as `--k3s-arg`
+  k3d:
+    disableImageVolume: false
+    disableLoadbalancer: false
+    disableRollback: false
+    loadbalancer: { }
+    wait: false
+  k3s:
+    extraArgs:
       - arg: --no-deploy=traefik
         nodeFilters:
           - server:*
+  kubeconfig: { }
+  runtime:
+    HostPidMode: false
+ports:
+  - nodeFilters:
+      - loadbalancer
+    port: 8080:80
+  - nodeFilters:
+      - loadbalancer
+    port: 8443:443
+  - nodeFilters:
+      - loadbalancer
+    port: 9080:9080
+registries:
+  create: # creates a default registry to be used with the cluster; same as `--registry-create registry.localhost`
+    name: k3d-registry.localhost
+    host: "0.0.0.0"
+    hostPort: "5000"
+#  use:
+#    - k3d-myotherregistry:5000 # some other k3d-managed registry; same as `--registry-use 'k3d-myotherregistry:5000'`
+  config: | # define contents of the `registries.yaml` file (or reference a file); same as `--registry-config /path/to/config.yaml`
+#    mirrors:
+#      "my.company.registry":
+#        endpoint:
+#          - http://my.company.registry:5000
