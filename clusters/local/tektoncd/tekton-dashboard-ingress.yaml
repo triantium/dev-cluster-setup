@@ -1,0 +1,21 @@
+# apiVersion: networking.k8s.io/v1beta1 # for k3s < v1.19
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tekton-dashboard
+  namespace: tekton-pipelines
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+
+  rules:
+    - host: tekton.localhost
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: tekton-dashboard
+                port:
+                  name: http

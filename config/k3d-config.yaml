@@ -1,0 +1,19 @@
+apiVersion: k3d.io/v1alpha4
+kind: Simple
+kubeAPI: { }
+metadata:
+  name: local
+servers: 1
+agents: 2
+options:
+  k3d:
+    disableImageVolume: false
+    disableLoadbalancer: false
+    disableRollback: false
+    loadbalancer: { }
+    wait: false
+ports:
+  - nodeFilters:
+      - loadbalancer
+    port: 8080:80
+
